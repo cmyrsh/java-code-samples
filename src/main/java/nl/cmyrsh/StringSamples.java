@@ -20,6 +20,12 @@ public final class StringSamples {
         final AtomicReference<String> previous = new AtomicReference<>("");
 
 
+
+        /*
+            split list per characters
+            create buckets
+            first by letter then by group
+         */
         Map<Integer, Map<String, List<Pair>>> stringListMap = Arrays.stream(input.split("")).map(c -> {
 
             if (!c.equals(previous.get())) {
@@ -30,6 +36,10 @@ public final class StringSamples {
 
             return new Pair(c, index.incrementAndGet(), bucketIndex.get());
         }).collect(Collectors.groupingBy(Pair::getBucketIndex, Collectors.groupingBy(Pair::getValue)));
+
+        /*
+            iterate the bucket and add final value of each list to output
+         */
 
         stringListMap.values().forEach(stringListMap1 -> {
             stringListMap1.entrySet().forEach(stringListEntry -> {
