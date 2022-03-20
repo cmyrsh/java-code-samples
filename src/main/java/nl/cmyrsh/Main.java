@@ -1,2 +1,7 @@
-package nl.cmyrsh;public class Main {
+package nl.cmyrsh;
+
+public class Main {
+    public static void main(String[] args) {
+
+    }
 }
