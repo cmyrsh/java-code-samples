@@ -1,0 +1,120 @@
+Classfile /home/mayuresh/workspace/github/java-code-samples/target/classes/nl/cmyrsh/methods/UsingMethod.class
+  Last modified Jun 19, 2022; size 905 bytes
+  SHA-256 checksum cce9a7a6b529b697134e0b78293596de0534154edc980754d688ffc70a75e030
+  Compiled from "UsingMethod.java"
+public class nl.cmyrsh.methods.UsingMethod
+  minor version: 0
+  major version: 55
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #32                         // nl/cmyrsh/methods/UsingMethod
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 3, attributes: 1
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."<init>":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Methodref          #8.#9          // java/util/UUID.randomUUID:()Ljava/util/UUID;
+   #8 = Class              #10            // java/util/UUID
+   #9 = NameAndType        #11:#12        // randomUUID:()Ljava/util/UUID;
+  #10 = Utf8               java/util/UUID
+  #11 = Utf8               randomUUID
+  #12 = Utf8               ()Ljava/util/UUID;
+  #13 = Methodref          #8.#14         // java/util/UUID.toString:()Ljava/lang/String;
+  #14 = NameAndType        #15:#16        // toString:()Ljava/lang/String;
+  #15 = Utf8               toString
+  #16 = Utf8               ()Ljava/lang/String;
+  #17 = Methodref          #18.#19        // java/lang/String.concat:(Ljava/lang/String;)Ljava/lang/String;
+  #18 = Class              #20            // java/lang/String
+  #19 = NameAndType        #21:#22        // concat:(Ljava/lang/String;)Ljava/lang/String;
+  #20 = Utf8               java/lang/String
+  #21 = Utf8               concat
+  #22 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #23 = String             #24            // Hello World
+  #24 = Utf8               Hello World
+  #25 = Fieldref           #26.#27        // java/lang/System.out:Ljava/io/PrintStream;
+  #26 = Class              #28            // java/lang/System
+  #27 = NameAndType        #29:#30        // out:Ljava/io/PrintStream;
+  #28 = Utf8               java/lang/System
+  #29 = Utf8               out
+  #30 = Utf8               Ljava/io/PrintStream;
+  #31 = Methodref          #32.#33        // nl/cmyrsh/methods/UsingMethod.operate:(Ljava/lang/String;)Ljava/lang/String;
+  #32 = Class              #34            // nl/cmyrsh/methods/UsingMethod
+  #33 = NameAndType        #35:#22        // operate:(Ljava/lang/String;)Ljava/lang/String;
+  #34 = Utf8               nl/cmyrsh/methods/UsingMethod
+  #35 = Utf8               operate
+  #36 = Methodref          #37.#38        // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #37 = Class              #39            // java/io/PrintStream
+  #38 = NameAndType        #40:#41        // println:(Ljava/lang/String;)V
+  #39 = Utf8               java/io/PrintStream
+  #40 = Utf8               println
+  #41 = Utf8               (Ljava/lang/String;)V
+  #42 = Utf8               Code
+  #43 = Utf8               LineNumberTable
+  #44 = Utf8               LocalVariableTable
+  #45 = Utf8               this
+  #46 = Utf8               Lnl/cmyrsh/methods/UsingMethod;
+  #47 = Utf8               input
+  #48 = Utf8               Ljava/lang/String;
+  #49 = Utf8               main
+  #50 = Utf8               ([Ljava/lang/String;)V
+  #51 = Utf8               args
+  #52 = Utf8               [Ljava/lang/String;
+  #53 = Utf8               hello
+  #54 = Utf8               SourceFile
+  #55 = Utf8               UsingMethod.java
+{
+  public nl.cmyrsh.methods.UsingMethod();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 5: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lnl/cmyrsh/methods/UsingMethod;
+
+  private static java.lang.String operate(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: invokestatic  #7                  // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
+         3: invokevirtual #13                 // Method java/util/UUID.toString:()Ljava/lang/String;
+         6: aload_0
+         7: invokevirtual #17                 // Method java/lang/String.concat:(Ljava/lang/String;)Ljava/lang/String;
+        10: areturn
+      LineNumberTable:
+        line 10: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0 input   Ljava/lang/String;
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: ldc           #23                 // String Hello World
+         2: astore_1
+         3: getstatic     #25                 // Field java/lang/System.out:Ljava/io/PrintStream;
+         6: aload_1
+         7: invokestatic  #31                 // Method operate:(Ljava/lang/String;)Ljava/lang/String;
+        10: invokevirtual #36                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        13: return
+      LineNumberTable:
+        line 14: 0
+        line 15: 3
+        line 16: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  args   [Ljava/lang/String;
+            3      11     1 hello   Ljava/lang/String;
+}
+SourceFile: "UsingMethod.java"
