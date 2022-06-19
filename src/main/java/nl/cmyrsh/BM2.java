@@ -37,7 +37,7 @@ public class BM2 {
     @Benchmark
     @Fork(value = 1, jvmArgsAppend = "-Xlog:gc=debug::pid,time,uptime", jvmArgs = {"-server",  "-XX:+UnlockExperimentalVMOptions", "-XX:+UseZGC", "-Xms2G", "-Xmx8G", "-Xss32m"})
     @Warmup(iterations = 1, time = 1)
-    @Measurement(iterations = 1, batchSize = 2)
+    @Measurement(iterations = 10, batchSize = 2)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void funcTest(Blackhole blackhole){
         List.of(ID.apply(random.nextInt())).stream()
@@ -49,7 +49,7 @@ public class BM2 {
     @Benchmark
     @Fork(value = 1, jvmArgsAppend = "-Xlog:gc=debug::pid,time,uptime", jvmArgs = {"-server",  "-XX:+UnlockExperimentalVMOptions", "-XX:+UseZGC", "-Xms2G", "-Xmx8G", "-Xss32m"})
     @Warmup(iterations = 1, time = 1)
-    @Measurement(iterations = 1, batchSize = 2)
+    @Measurement(iterations = 10, batchSize = 2)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void funcAsyncTest(Blackhole blackhole){
         CompletableFuture.supplyAsync(() -> ID.apply(random.nextInt()), pool)
