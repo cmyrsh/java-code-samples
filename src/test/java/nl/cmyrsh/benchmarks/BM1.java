@@ -1,11 +1,11 @@
-package nl.cmyrsh;
+package nl.cmyrsh.benchmarks;
 
+import nl.cmyrsh.Lambda;
 import nl.cmyrsh.functions.Func1;
 import nl.cmyrsh.functions.Func2;
 import nl.cmyrsh.functions.Func3;
 import org.openjdk.jmh.annotations.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.*;

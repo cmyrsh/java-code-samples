@@ -1,4 +1,4 @@
-package nl.cmyrsh;
+package nl.cmyrsh.benchmarks;
 
 import nl.cmyrsh.functions.Func1;
 import nl.cmyrsh.functions.Func2;
@@ -11,6 +11,8 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -32,7 +34,8 @@ public class BM2 {
     private final static Function<String, String> correctText = Func1.getInstance()::correctText;
     private final static Function<String, String> classifyText = Func2.getInstance()::classifyText;
     private final static Function<String, String> save = Func3.getInstance()::save;
-    private final static Consumer<String> eat = s -> log.info(s);
+    private final static Consumer<String> eat = s -> log.finest(s);
+    private final static ExecutorService three_threads = Executors.newFixedThreadPool(3);
 
     @Benchmark
     @Fork(value = 1, jvmArgsAppend = "-Xlog:gc=debug::pid,time,uptime", jvmArgs = {"-server",  "-XX:+UnlockExperimentalVMOptions", "-XX:+UseZGC", "-Xms2G", "-Xmx8G", "-Xss32m"})
@@ -58,6 +61,30 @@ public class BM2 {
                 .thenApply(save)
                 .thenAccept(eat);
     }
-
+    @Benchmark
+    @Fork(value = 1, jvmArgsAppend = "-Xlog:gc=debug::pid,time,uptime", jvmArgs = {"-server",  "-XX:+UnlockExperimentalVMOptions", "-XX:+UseZGC", "-Xms2G", "-Xmx8G", "-Xss32m"})
+    @Warmup(iterations = 1, time = 1)
+    @Measurement(iterations = 10, batchSize = 2)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void funcAsyncTest_threeThreads(Blackhole blackhole){
+        CompletableFuture.supplyAsync(() -> ID.apply(random.nextInt()), three_threads)
+                .thenApply(correctText)
+                .thenApply(classifyText)
+                .thenApply(save)
+                .thenAccept(eat);
+    }
+    // @Benchmark
+    // @Fork(value = 1, jvmArgsAppend = "-Xlog:gc=debug::pid,time,uptime", jvmArgs = {"-server",  "-XX:+UnlockExperimentalVMOptions", "-XX:+UseZGC", "-Xms2G", "-Xmx8G", "-Xss32m"})
+    // @Warmup(iterations = 1, time = 1)
+    // @Measurement(iterations = 10, batchSize = 2)
+    // @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    // public void funcAsyncTest_withVirtualThreads(Blackhole blackhole){
+    //     ExecutorService virtualTPool = Executors.newVirtualThreadPool(pool);
+    //     CompletableFuture.supplyAsync(() -> ID.apply(random.nextInt()), pool)
+    //             .thenApply(correctText)
+    //             .thenApply(classifyText)
+    //             .thenApply(save)
+    //             .thenAccept(eat);
+    // }
 
 }
