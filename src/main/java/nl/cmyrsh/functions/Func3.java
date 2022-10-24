@@ -1,6 +1,5 @@
 package nl.cmyrsh.functions;
 
-import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
